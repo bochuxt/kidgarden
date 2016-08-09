@@ -1,9 +1,8 @@
-
 'use strict';
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Image} from 'react-native';
+import React, { Component } from 'react';
+import { Image } from 'react-native';
+import { connect } from 'react-redux';
 
 export default class SplashPage extends Component {
 

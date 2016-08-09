@@ -1,11 +1,8 @@
-
 'use strict';
 
 var React = require('react-native');
 
-var { StyleSheet, Dimensions } = React;
-
-var deviceHeight = Dimensions.get('window').height;
+var { StyleSheet } = React;
 
 module.exports = StyleSheet.create({
     container: {
@@ -15,7 +12,7 @@ module.exports = StyleSheet.create({
     },
     roundedButton: {
         alignSelf: 'center',
-        marginTop: 25,
+        marginTop: 40,
         backgroundColor: '#00c497',
         borderRadius:90,
         width: 65,
@@ -23,5 +20,9 @@ module.exports = StyleSheet.create({
     },
     name: {
         color: 'red'
+    },
+    text: {
+        marginBottom: 10,
+        fontSize: 18
     }
 });

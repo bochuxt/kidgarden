@@ -1,12 +1,13 @@
-
 'use strict';
 
-import { StyleSheet } from "react-native";
+var React = require('react-native');
+
+var { StyleSheet } = React;
 
 module.exports = StyleSheet.create({
     container: {
         flex: 1,
         width: null,
         height: null,
-    },
+    }
 });
