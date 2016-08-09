@@ -8,7 +8,7 @@ import _ from 'lodash/core';
 import { closeDrawer } from './actions/drawer';
 import { popRoute } from './actions/route';
 
-import {Drawer} from 'native-base';
+import { Drawer } from 'native-base';
 import Navigator from 'Navigator';
 import Login from './components/login/';
 import Home from './components/home/';
