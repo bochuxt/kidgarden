@@ -31,8 +31,8 @@ class Home extends Component {
             <Container theme={theme} style={{backgroundColor: '#384850'}}>
                 <Image source={require('../../../images/glow2.png')} style={styles.container} >
                     <Header>  
-                        <View />
-                                              
+                        <Button transparent> </Button>
+
                         <Title>Home</Title>
                         
                         <Button transparent onPress={this.props.openDrawer}>
