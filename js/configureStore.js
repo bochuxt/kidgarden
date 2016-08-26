@@ -12,12 +12,12 @@ export default function configureStore(onCompletion:()=>void):any {
 	const enhancer = compose(
 		applyMiddleware(thunk, promise),
 		devTools({
-	      name: 'nativestarterpro', realtime: true
+	      name: 'nativestarterproseed', realtime: true
 	    }),
 	);
-	
+
 	let store = createStore(reducer, enhancer);
 	persistStore(store, {storage: AsyncStorage}, onCompletion);
-	
+
 	return store
 }

@@ -135,15 +135,15 @@ class AppNavigator extends Component {
     renderScene(route, navigator) {
         switch (route.id) {
             case 'splashscreen':
-                return <SplashPage navigator={navigator}{...route.passProps} />;
+                return <SplashPage navigator={navigator} />;
             case 'login':
-                return <Login navigator={navigator}{...route.passProps} />;
+                return <Login navigator={navigator} />;
             case 'home':
-                return <Home navigator={navigator}{...route.passProps} />;
+                return <Home navigator={navigator} />;
             case 'blankPage':
-                return <BlankPage navigator={navigator}{...route.passProps} />;
+                return <BlankPage navigator={navigator} />;
             default :
-                return <Login navigator={navigator} {...route.passProps} />;
+                return <Login navigator={navigator} />;
         }
     }
 }

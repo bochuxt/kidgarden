@@ -21,12 +21,12 @@ class Login extends Component {
         };
     }
 
-    replaceRoute(route, passProps) {
-        this.props.replaceRoute(route, passProps);
+    replaceRoute(route) {
+        this.props.replaceRoute(route);
     }
 
-    pushNewRoute(route, passProps) {
-         this.props.pushNewRoute(route, passProps);
+    pushNewRoute(route) {
+         this.props.pushNewRoute(route);
     }
 
     render() {
@@ -39,8 +39,8 @@ class Login extends Component {
                                 <View style={{marginBottom: 20}}>
                                     <InputGroup >
                                         <Icon name='ios-person' />
-                                        <Input 
-                                            placeholder='EMAIL' 
+                                        <Input
+                                            placeholder='EMAIL'
                                             onChangeText={(email) => this.setState({email})}
                                         />
                                     </InputGroup>
@@ -82,8 +82,8 @@ class Login extends Component {
 
 function bindActions(dispatch){
     return {
-        replaceRoute:(route, passProps)=>dispatch(replaceRoute(route, passProps)),
-        pushNewRoute:(route, passProps)=>dispatch(pushNewRoute(route, passProps))
+        replaceRoute:(route)=>dispatch(replaceRoute(route)),
+        pushNewRoute:(route)=>dispatch(pushNewRoute(route))
     }
 }
 
