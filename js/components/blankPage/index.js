@@ -26,18 +26,16 @@ class BlankPage extends Component {
                         <Button transparent onPress={() => this.popRoute()}>
                             <Icon name='ios-arrow-back' />
                         </Button>
-                        
+
                         <Title>Blank Page</Title>
-                        
+
                         <Button transparent onPress={this.props.openDrawer}>
                             <Icon name='ios-menu' />
                         </Button>
                     </Header>
 
                     <Content padder style={{backgroundColor: 'transparent'}}>
-                        <Text>
-                            Create Something Awesome . . .
-                        </Text>
+                        
                     </Content>
                 </Image>
             </Container>

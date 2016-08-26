@@ -30,20 +30,21 @@ class Home extends Component {
         return (
             <Container theme={theme} style={{backgroundColor: '#384850'}}>
                 <Image source={require('../../../images/glow2.png')} style={styles.container} >
-                    <Header>  
+                    <Header>
                         <Button transparent> </Button>
 
                         <Title>Home</Title>
-                        
+
                         <Button transparent onPress={this.props.openDrawer}>
                             <Icon name='ios-menu' />
                         </Button>
                     </Header>
-                    
+
                     <Content style={{backgroundColor: 'transparent'}} padder>
-                        <Text style={styles.text}>Email:        {this.props.email}</Text>
-                        <Text style={styles.text}>Password: {this.props.password}</Text>
-                        
+                        <Text>
+                            Create Something Awesome . . .
+                        </Text>
+
                         <Button transparent large style={styles.roundedButton} onPress={() => this.replaceRoute('login')}>
                             <Icon name='ios-close-outline' />
                         </Button>
