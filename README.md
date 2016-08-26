@@ -1,4 +1,4 @@
-## Native Starter Pro - Seed
+## Native Starter Pro - Seed v5.0.0
 
 Thanks for purchasing the Native Starter Pro.
 

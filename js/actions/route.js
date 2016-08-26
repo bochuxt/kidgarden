@@ -1,9 +1,5 @@
-/**
- * Created by kylefang on 4/30/16.
- * @flow
- */
-
 'use strict';
+
 import type {Action} from './types'
 
 export const PUSH_NEW_ROUTE = "PUSH_NEW_ROUTE";
@@ -34,7 +30,6 @@ export function replaceOrPushRoute(route:string):Action {
 }
 
 export function popRoute():Action {
-  console.log('called popToRoute');
   return {
     type: POP_ROUTE
   }

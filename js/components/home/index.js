@@ -1,19 +1,22 @@
-
 'use strict';
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
 import { Image, View } from 'react-native';
+import { connect } from 'react-redux';
 
-import {openDrawer} from '../../actions/drawer';
-import {popRoute, replaceRoute} from '../../actions/route';
+import { openDrawer } from '../../actions/drawer';
+import { popRoute, replaceRoute } from '../../actions/route';
 
-import {Container, Header, Title, Content, Text, Button, Icon } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text } from 'native-base';
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
 
 class Home extends Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     replaceRoute(route) {
         this.props.replaceRoute(route);
@@ -27,23 +30,23 @@ class Home extends Component {
         return (
             <Container theme={theme} style={{backgroundColor: '#384850'}}>
                 <Image source={require('../../../images/glow2.png')} style={styles.container} >
-                    <Header>  
-                        <View />
-                                              
+                    <Header>
+                        <Button transparent> </Button>
+
                         <Title>Home</Title>
-                        
+
                         <Button transparent onPress={this.props.openDrawer}>
-                            <Icon name="ios-menu" />
+                            <Icon name='ios-menu' />
                         </Button>
                     </Header>
-                    
+
                     <Content style={{backgroundColor: 'transparent'}} padder>
                         <Text>
                             Create Something Awesome . . .
                         </Text>
-                        
+
                         <Button transparent large style={styles.roundedButton} onPress={() => this.replaceRoute('login')}>
-                            <Icon name="ios-close-outline" />
+                            <Icon name='ios-close-outline' />
                         </Button>
                     </Content>
                 </Image>

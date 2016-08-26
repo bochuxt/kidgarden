@@ -1,4 +1,3 @@
-
 'use strict';
 
 var React = require('react-native');
@@ -27,6 +26,5 @@ module.exports = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 70
-    },
-
+    }
 });

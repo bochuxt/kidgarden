@@ -1,14 +1,13 @@
-
 'use strict';
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
 import { Image } from 'react-native';
+import { connect } from 'react-redux';
 
-import {openDrawer} from '../../actions/drawer';
-import {popRoute} from '../../actions/route';
+import { openDrawer } from '../../actions/drawer';
+import { popRoute } from '../../actions/route';
 
-import {Container, Header, Title, Content, Button, Icon } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, Text } from 'native-base';
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
@@ -25,18 +24,18 @@ class BlankPage extends Component {
                 <Image source={require('../../../images/glow2.png')} style={styles.container} >
                     <Header>
                         <Button transparent onPress={() => this.popRoute()}>
-                            <Icon name="ios-arrow-back" />
+                            <Icon name='ios-arrow-back' />
                         </Button>
-                        
+
                         <Title>Blank Page</Title>
-                        
+
                         <Button transparent onPress={this.props.openDrawer}>
-                            <Icon name="ios-menu" />
+                            <Icon name='ios-menu' />
                         </Button>
                     </Header>
 
                     <Content padder style={{backgroundColor: 'transparent'}}>
-
+                        
                     </Content>
                 </Image>
             </Container>

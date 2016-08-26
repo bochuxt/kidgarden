@@ -1,12 +1,11 @@
-
 'use strict';
 
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Dimensions, Image, Platform} from 'react-native';
+import React, { Component } from 'react';
+import { Image, Platform } from 'react-native';
+import { connect } from 'react-redux';
 
-import {pushNewRoute, replaceRoute} from '../../actions/route';
-import {Container, Content, Text, InputGroup, Input, Button, Icon, View } from 'native-base';
+import { pushNewRoute, replaceRoute } from '../../actions/route';
+import { Container, Content, Text, InputGroup, Input, Button, Icon, View } from 'native-base';
 
 import login from './login-theme';
 import styles from './styles';
@@ -18,7 +17,6 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
-            visibleHeight: Dimensions.get('window').height,
             scroll: false
         };
     }
@@ -38,23 +36,33 @@ class Login extends Component {
                     <Image source={require('../../../images/glow2.png')} style={styles.container}>
                         <Image source={require('../../../images/logo.png')} style={styles.shadow}>
                             <View style={styles.bg}>
-                                <InputGroup style={{marginBottom: 20}}>
-                                    <Icon name="ios-person" />
-                                    <Input placeholder="EMAIL" />
-                                </InputGroup>
-                                <InputGroup style={{marginBottom: 10}}>
-                                    <Icon name="ios-unlock-outline" />
-                                    <Input
-                                        placeholder="PASSWORD"
-                                        secureTextEntry={true}
-                                    />
-                                </InputGroup>
-                                <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 10 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}>
+                                <View style={{marginBottom: 20}}>
+                                    <InputGroup >
+                                        <Icon name='ios-person' />
+                                        <Input
+                                            placeholder='EMAIL'
+                                            onChangeText={(email) => this.setState({email})}
+                                        />
+                                    </InputGroup>
+                                </View>
+
+                                <View style={{marginBottom: 30}}>
+                                    <InputGroup >
+                                        <Icon name='ios-unlock-outline' />
+                                        <Input
+                                            placeholder='PASSWORD'
+                                            secureTextEntry={true}
+                                            onChangeText={(password) => this.setState({password})}
+                                        />
+                                    </InputGroup>
+                                </View>
+
+                                <Button transparent style={{alignSelf: 'flex-end',  marginBottom: (Platform.OS === 'ios' ) ? 5 : 0, marginTop: (Platform.OS === 'ios' ) ? -10 : 0}}>
                                     <Text>
                                         Forgot Password
                                     </Text>
                                 </Button>
-                                <Button rounded block style={{marginBottom: 10}} onPress={() => this.replaceRoute('home')}>
+                                <Button rounded block style={{marginBottom: 20}} onPress={() => this.replaceRoute('home', {email: this.state.email, password: this.state.password})}>
                                     Login
                                 </Button>
                                 <Button transparent style={{alignSelf: 'center'}}>
@@ -70,6 +78,7 @@ class Login extends Component {
         )
     }
 }
+
 
 function bindActions(dispatch){
     return {

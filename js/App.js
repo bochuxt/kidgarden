@@ -1,13 +1,16 @@
 'use strict';
 
-import AppNavigator from './AppNavigator';
-import React,{Component} from "react";
+import React,{ Component } from 'react';
+import { StyleSheet, Dimensions } from 'react-native';
 import CodePush from 'react-native-code-push';
-import { StyleSheet, AppState, Dimensions, Image} from 'react-native';
+
+import { Container, Content, Text, View } from 'native-base';
 import Modal from 'react-native-modalbox';
-import {Container, Header, Title, Content, Text, Button, Icon, List, ListItem, View} from 'native-base';
-import theme from './themes/base-theme';
+
+import AppNavigator from './AppNavigator';
 import ProgressBar from './components/loaders/ProgressBar';
+
+import theme from './themes/base-theme';
 
 var height = Dimensions.get('window').height;
 let styles = StyleSheet.create({
@@ -43,6 +46,7 @@ let styles = StyleSheet.create({
 });
 
 class App extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -53,40 +57,26 @@ class App extends Component {
     }
 
     componentDidMount() {
-        /* Uncomment this code for testing the update modal */
-        // this.setState({showDownloadingModal: true});
-        //this.setState({showInstalling: true});
-        // this.refs.modal.open();
-        // var intervalId = setInterval(() => {
-        //     if(this.state.downloadProgress == 99) {
-        //         clearInterval(intervalId);
-        //         this.setState({showDownloadingModal: false});
-        //     }
-        //     this.setState({downloadProgress: this.state.downloadProgress + 1});
-        // }, 30);
-
-        // Prompt the user when an update is available
-        // and then display a "downloading" modal
 
         CodePush.sync({ updateDialog: true, installMode: CodePush.InstallMode.IMMEDIATE },
-          (status) => {
-              switch (status) {
-                  case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-                      this.setState({showDownloadingModal: true});
-                      this.refs.modal.open();
-                      break;
-                  case CodePush.SyncStatus.INSTALLING_UPDATE:
-                      this.setState({showInstalling: true});
-                      break;
-                  case CodePush.SyncStatus.UPDATE_INSTALLED:
-                      this.refs.modal.close();
-                      this.setState({showDownloadingModal: false});
-                      break;
-              }
-          },
-          ({ receivedBytes, totalBytes, }) => {
-            this.setState({downloadProgress: receivedBytes / totalBytes * 100});
-          }
+            (status) => {
+                switch (status) {
+                    case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+                        this.setState({showDownloadingModal: true});
+                        this.refs.modal.open();
+                        break;
+                    case CodePush.SyncStatus.INSTALLING_UPDATE:
+                        this.setState({showInstalling: true});
+                        break;
+                    case CodePush.SyncStatus.UPDATE_INSTALLED:
+                        this.refs.modal.close();
+                        this.setState({showDownloadingModal: false});
+                        break;
+                }
+            },
+            ({ receivedBytes, totalBytes, }) => {
+                this.setState({downloadProgress: receivedBytes / totalBytes * 100});
+            }
         );
     }
 
@@ -95,7 +85,7 @@ class App extends Component {
             return (
                 <Container theme={theme} style={{backgroundColor: theme.defaultBackgroundColor}}>
                     <Content style={styles.container}>
-                        <Modal style={[styles.modal, styles.modal1]} backdrop={false} ref={"modal"} swipeToClose={false} >
+                        <Modal style={[styles.modal, styles.modal1]} backdrop={false} ref={'modal'} swipeToClose={false} >
 
                             <View style={{flex:1, alignSelf: 'stretch', justifyContent: 'center', padding:20}}>
                                 {this.state.showInstalling ?
@@ -104,7 +94,7 @@ class App extends Component {
                                     </Text> :
                                     <View style={{flex:1, alignSelf: 'stretch', justifyContent: 'center', padding:20}}>
                                         <Text style={{color: theme.brandPrimary, textAlign: 'center',marginBottom: 15, fontSize: 15 }}>Downloading update... {parseInt(this.state.downloadProgress) + ' %'}</Text>
-                                        <ProgressBar color="theme.brandPrimary" progress={parseInt(this.state.downloadProgress)} />
+                                        <ProgressBar color='theme.brandPrimary' progress={parseInt(this.state.downloadProgress)} />
                                     </View>
                                 }
                             </View>

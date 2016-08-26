@@ -41,14 +41,14 @@ export default function (state:State = initialState, action:Action): State {
   // For sidebar navigation
   if (action.type === REPLACE_OR_PUSH_ROUTE) {
     let routes = state.routes;
-    
+
     if(routes[routes.length - 1] == 'home') {
       // If top route is home and user navigates to a route other than home, then push
       if(action.route != 'home')
         globalNav.navigator.push({id: action.route});
 
       // If top route is home and user navigates to home, do nothing
-      else 
+      else
         routes = [];
     }
 
@@ -61,9 +61,9 @@ export default function (state:State = initialState, action:Action): State {
         globalNav.navigator.replaceWithAnimation({id: action.route});
         routes.pop();
       }
-      
+
     }
-    
+
     return {
       routes: [...routes, action.route]
     };
