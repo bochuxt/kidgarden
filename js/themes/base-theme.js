@@ -1,4 +1,4 @@
-import Color from 'color';
+import color from 'color';
 
 import {Platform} from 'react-native';
 

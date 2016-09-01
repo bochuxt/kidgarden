@@ -9,15 +9,15 @@ import { persistStore } from 'redux-persist'
 import promise from './promise';
 
 export default function configureStore(onCompletion:()=>void):any {
-	const enhancer = compose(
-		applyMiddleware(thunk, promise),
-		devTools({
-	      name: 'nativestarterproseed', realtime: true
-	    }),
-	);
+  const enhancer = compose(
+    applyMiddleware(thunk, promise),
+    devTools({
+        name: 'nativestarterproseed', realtime: true
+      }),
+  );
 
-	let store = createStore(reducer, enhancer);
-	persistStore(store, {storage: AsyncStorage}, onCompletion);
+  let store = createStore(reducer, enhancer);
+  persistStore(store, {storage: AsyncStorage}, onCompletion);
 
-	return store
+  return store;
 }

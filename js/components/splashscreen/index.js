@@ -14,10 +14,10 @@ export default class SplashPage extends Component {
             });
         }, 1500);
     }
-    
+
     render () {
         return (
             <Image source={require('../../../images/launchscreen.png')} style={{flex: 1, height: null, width: null}} />
         );
-    }
+  }
 }

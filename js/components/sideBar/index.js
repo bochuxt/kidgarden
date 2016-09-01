@@ -13,7 +13,7 @@ import styles from './style';
 class SideBar extends Component {
 
     navigateTo(route) {
-        this.props.closeDrawer(); 
+        this.props.closeDrawer();
         this.props.replaceOrPushRoute(route);
     }
 
@@ -33,14 +33,14 @@ class SideBar extends Component {
                 </List>
             </Content>
         );
-    }
+  }
 }
 
 function bindAction(dispatch) {
-    return {
-        closeDrawer: ()=>dispatch(closeDrawer()),
-        replaceOrPushRoute:(route)=>dispatch(replaceOrPushRoute(route))
-    }
+  return {
+    closeDrawer: ()=>dispatch(closeDrawer()),
+    replaceOrPushRoute: (route)=>dispatch(replaceOrPushRoute(route))
+  };
 }
 
 export default connect(null, bindAction)(SideBar);
