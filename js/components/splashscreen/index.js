@@ -1,23 +1,27 @@
-'use strict';
 
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { connect } from 'react-redux';
+
+const launchscreen = require('../../../images/launchscreen.png');
 
 export default class SplashPage extends Component {
 
-    componentWillMount () {
-        var navigator = this.props.navigator;
-        setTimeout (() => {
-            navigator.replace({
-                id: 'index',
-            });
-        }, 1500);
-    }
+  static propTypes = {
+    navigator: React.PropTypes.object,
+  }
 
-    render () {
-        return (
-            <Image source={require('../../../images/launchscreen.png')} style={{flex: 1, height: null, width: null}} />
-        );
+  static render() {
+    return (
+      <Image source={launchscreen} style={{ flex: 1, height: null, width: null }} />
+    );
+  }
+
+  componentWillMount() {
+    const navigator = this.props.navigator;
+    setTimeout(() => {
+      navigator.replace({
+        id: 'index',
+      });
+    }, 1500);
   }
 }
