@@ -6,14 +6,14 @@ const launchscreen = require('../../../images/launchscreen.png');
 
 export default class SplashPage extends Component {
 
-  static propTypes = {
-    navigator: React.PropTypes.object,
-  }
-
   static render() {
     return (
       <Image source={launchscreen} style={{ flex: 1, height: null, width: null }} />
     );
+  }
+
+  propTypes = {
+    navigator: React.PropTypes.shape(this.props.navigator),
   }
 
   componentWillMount() {
