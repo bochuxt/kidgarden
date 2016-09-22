@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Drawer } from 'native-base';
 
 import { closeDrawer } from './actions/drawer';
-import { popRoute } from './actions/route';
+import { popRoute } from './actions/route'
 
 import Login from './components/login/';
 import Home from './components/home/';
