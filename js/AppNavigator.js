@@ -14,7 +14,7 @@ import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
 import { statusBarColor } from './themes/base-theme';
 
-Navigator.prototype.replaceWithAnimation = (route) => {
+Navigator.prototype.replaceWithAnimation = function replaceWithAnimation(route) {
   const activeLength = this.state.presentedIndex + 1;
   const activeStack = this.state.routeStack.slice(0, activeLength);
   const activeAnimationConfigStack = this.state.sceneConfigStack.slice(0, activeLength);
@@ -39,11 +39,25 @@ Navigator.prototype.replaceWithAnimation = (route) => {
 export const globalNav = {};
 
 class AppNavigator extends Component {
-
   static propTypes = {
     drawerState: React.PropTypes.string,
     popRoute: React.PropTypes.func,
     closeDrawer: React.PropTypes.func,
+  }
+
+  static renderScene(route, navigator) {
+    switch (route.id) {
+      case 'splashscreen':
+        return <SplashPage navigator={navigator} />;
+      case 'login':
+        return <Login navigator={navigator} />;
+      case 'home':
+        return <Home navigator={navigator} />;
+      case 'blankPage':
+        return <BlankPage navigator={navigator} />;
+      default :
+        return <Login navigator={navigator} />;
+    }
   }
 
   componentDidMount() {
@@ -53,10 +67,9 @@ class AppNavigator extends Component {
       const routes = this._navigator.getCurrentRoutes();
 
       if (routes[routes.length - 1].id === 'home' || routes[routes.length - 1].id === 'login') {
-                  // CLose the app
+                // CLose the app
         return false;
       }
-
       this.popRoute();
       return true;
     });
@@ -88,20 +101,17 @@ class AppNavigator extends Component {
     }
   }
 
-  renderScene(route, navigator) {
-    switch (route.id) {
-      case 'splashscreen':
-        return <SplashPage navigator={navigator} />;
-      case 'login':
-        return <Login navigator={navigator} />;
-      case 'home':
-        return <Home navigator={navigator} />;
-      case 'blankPage':
-        return <BlankPage navigator={navigator} />;
-      default :
-        return <Login navigator={navigator} />;
-    }
-  }
+  // renderScene(route, navigator) {
+  //   switch (route.id) {
+  //     case 'splashscreen':
+  //       return <SplashPage navigator={navigator} />;
+  //     case 'index':
+  //       return <Index navigator={navigator} />;
+  //     default :
+  //       return <Index navigator={navigator} />;
+  //   }
+  // }
+  // }
 
   render() {
     return (
@@ -131,16 +141,12 @@ class AppNavigator extends Component {
       </Drawer>
         );
   }
-
-
 }
 
-function bindAction(dispatch) {
-  return {
-    closeDrawer: () => dispatch(closeDrawer()),
-    popRoute: () => dispatch(popRoute()),
-  };
-}
+const bindAction = dispatch => ({
+  closeDrawer: () => dispatch(closeDrawer()),
+  popRoute: () => dispatch(popRoute()),
+});
 
 const mapStateToProps = state => ({
   drawerState: state.drawer.drawerState,
