@@ -45,21 +45,6 @@ class AppNavigator extends Component {
     closeDrawer: React.PropTypes.func,
   }
 
-  static renderScene(route, navigator) {
-    switch (route.id) {
-      case 'splashscreen':
-        return <SplashPage navigator={navigator} />;
-      case 'login':
-        return <Login navigator={navigator} />;
-      case 'home':
-        return <Home navigator={navigator} />;
-      case 'blankPage':
-        return <BlankPage navigator={navigator} />;
-      default :
-        return <Login navigator={navigator} />;
-    }
-  }
-
   componentDidMount() {
     globalNav.navigator = this._navigator;
 
@@ -98,6 +83,21 @@ class AppNavigator extends Component {
     if (this.props.drawerState === 'opened') {
       this._drawer.close();
       this.props.closeDrawer();
+    }
+  }
+
+  renderScene(route) {
+    switch (route.id) {
+      case 'splashscreen':
+        return <SplashPage navigator={this._navigator} />;
+      case 'login':
+        return <Login navigator={this._navigator} />;
+      case 'home':
+        return <Home navigator={this._navigator} />;
+      case 'blankPage':
+        return <BlankPage navigator={this._navigator} />;
+      default :
+        return <Login navigator={this._navigator} />;
     }
   }
 
