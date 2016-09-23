@@ -86,32 +86,20 @@ class AppNavigator extends Component {
     }
   }
 
-  renderScene(route) {
+  renderScene(route, navigator) {  // eslint-disable-line class-methods-use-this
     switch (route.id) {
       case 'splashscreen':
-        return <SplashPage navigator={this._navigator} />;
+        return <SplashPage navigator={navigator} />;
       case 'login':
-        return <Login navigator={this._navigator} />;
+        return <Login navigator={navigator} />;
       case 'home':
-        return <Home navigator={this._navigator} />;
+        return <Home navigator={navigator} />;
       case 'blankPage':
-        return <BlankPage navigator={this._navigator} />;
+        return <BlankPage navigator={navigator} />;
       default :
-        return <Login navigator={this._navigator} />;
+        return <Login navigator={navigator} />;
     }
   }
-
-  // renderScene(route, navigator) {
-  //   switch (route.id) {
-  //     case 'splashscreen':
-  //       return <SplashPage navigator={navigator} />;
-  //     case 'index':
-  //       return <Index navigator={navigator} />;
-  //     default :
-  //       return <Index navigator={navigator} />;
-  //   }
-  // }
-  // }
 
   render() {
     return (
