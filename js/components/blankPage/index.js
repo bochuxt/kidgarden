@@ -2,32 +2,38 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
+import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Header, Title, Content, Button, Icon } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
-import { popRoute } from '../../actions/route';
-
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
 
-const backgroundImage = require('../../../images/glow2.png');
+const {
+  popRoute,
+} = actions;
+
+const glow2 = require('../../../images/glow2.png');
 
 class BlankPage extends Component {
 
   static propTypes = {
     popRoute: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
+    navigation: React.PropTypes.shape({
+      key: React.PropTypes.string,
+    }),
   }
 
   popRoute() {
-    this.props.popRoute();
+    this.props.popRoute(this.props.navigation.key);
   }
 
   render() {
     return (
       <Container theme={theme} style={{ backgroundColor: '#384850' }}>
-        <Image source={backgroundImage} style={styles.container} >
+        <Image source={glow2} style={styles.container} >
           <Header>
             <Button transparent onPress={() => this.popRoute()}>
               <Icon name="ios-arrow-back" />
@@ -43,15 +49,19 @@ class BlankPage extends Component {
           <Content padder style={{ backgroundColor: 'transparent' }} />
         </Image>
       </Container>
-        );
+    );
   }
 }
 
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    popRoute: () => dispatch(popRoute()),
+    popRoute: key => dispatch(popRoute(key)),
   };
 }
 
-export default connect(null, bindAction)(BlankPage);
+const mapStateToProps = state => ({
+  navigation: state.cardNavigation,
+});
+
+export default connect(mapStateToProps, bindAction)(BlankPage);

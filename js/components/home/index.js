@@ -2,37 +2,34 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
+import { actions } from 'react-native-navigation-redux-helpers';
 import { Container, Header, Title, Content, Button, Icon, Text } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
-import { popRoute, replaceRoute } from '../../actions/route';
-
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
 
-const backgroundImage = require('../../../images/glow2.png');
+const {
+  reset,
+} = actions;
 
-class Home extends Component {
+const glow2 = require('../../../images/glow2.png');
+
+class Home extends Component {  // eslint-disable-line
 
   static propTypes = {
-    replaceRoute: React.PropTypes.func,
-    popRoute: React.PropTypes.func,
     openDrawer: React.PropTypes.func,
-  }
-
-  replaceRoute(route) {
-    this.props.replaceRoute(route);
-  }
-
-  popRoute() {
-    this.props.popRoute();
+    reset: React.PropTypes.func,
+    navigation: React.PropTypes.shape({
+      key: React.PropTypes.string,
+    }),
   }
 
   render() {
     return (
       <Container theme={theme} style={{ backgroundColor: '#384850' }}>
-        <Image source={backgroundImage} style={styles.container} >
+        <Image source={glow2} style={styles.container} >
           <Header>
             <Button transparent>
               <Text />
@@ -50,7 +47,12 @@ class Home extends Component {
               Create Something Awesome . . .
             </Text>
 
-            <Button transparent large style={styles.roundedButton} onPress={() => this.replaceRoute('login')}>
+            <Button
+              transparent
+              large
+              style={styles.roundedButton}
+              onPress={() => this.props.reset(this.props.navigation.key)}
+            >
               <Icon name="ios-close-outline" />
             </Button>
           </Content>
@@ -63,9 +65,12 @@ class Home extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    popRoute: () => dispatch(popRoute()),
-    replaceRoute: route => dispatch(replaceRoute(route)),
+    reset: key => dispatch(reset([{ key: 'login' }], key, 0)),
   };
 }
 
-export default connect(null, bindAction)(Home);
+const mapStateToProps = state => ({
+  navigation: state.cardNavigation,
+});
+
+export default connect(mapStateToProps, bindAction)(Home);

@@ -12,10 +12,9 @@ export default class SplashPage extends Component {
 
   componentWillMount() {
     const navigator = this.props.navigator;
-    // console.log('this.props.navigator', this.props.navigator);
     setTimeout(() => {
       navigator.replace({
-        id: 'index',
+        id: 'login',
       });
     }, 1500);
   }
