@@ -53,7 +53,7 @@ class Home extends Component {  // eslint-disable-line
               style={styles.roundedButton}
               onPress={() => this.props.reset(this.props.navigation.key)}
             >
-              <Icon name="ios-close-outline" />
+              <Icon name="ios-close-outline" style={styles.closeIcon} />
             </Button>
           </Content>
         </Image>
