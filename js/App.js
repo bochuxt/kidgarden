@@ -14,7 +14,7 @@ import theme from './themes/base-theme';
 
 var height = Dimensions.get('window').height;
 let styles = StyleSheet.create({
-    container: {
+    container: { 
         flex: 1,
         width: null,
         height: null,
