@@ -1,7 +1,7 @@
 
 const React = require('react-native');
 
-const { StyleSheet, Dimensions } = React;
+const { StyleSheet, Dimensions, Platform } = React;
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -24,6 +24,6 @@ module.exports = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingBottom: 100,
+    paddingBottom: (Platform.OS === 'ios') ? 70 : 50,
   },
 });
