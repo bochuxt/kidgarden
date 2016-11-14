@@ -1,66 +1,76 @@
-'use strict';
 
 import React, { Component } from 'react';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
 import { connect } from 'react-redux';
+import { actions } from 'react-native-navigation-redux-helpers';
+import { Container, Header, Title, Content, Button, Icon, Text } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
-import { popRoute, replaceRoute } from '../../actions/route';
-
-import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text } from 'native-base';
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
 
-class Home extends Component {
+const {
+  reset,
+} = actions;
 
-    constructor(props) {
-        super(props);
-    }
+const glow2 = require('../../../images/glow2.png');
 
-    replaceRoute(route) {
-        this.props.replaceRoute(route);
-    }
+class Home extends Component {  // eslint-disable-line
 
-    popRoute() {
-        this.props.popRoute();
-    }
+  static propTypes = {
+    openDrawer: React.PropTypes.func,
+    reset: React.PropTypes.func,
+    navigation: React.PropTypes.shape({
+      key: React.PropTypes.string,
+    }),
+  }
 
-    render() {
-        return (
-            <Container theme={theme} style={{backgroundColor: '#384850'}}>
-                <Image source={require('../../../images/glow2.png')} style={styles.container} >
-                    <Header>
-                        <Button transparent> </Button>
+  render() {
+    return (
+      <Container theme={theme} style={{ backgroundColor: '#384850' }}>
+        <Image source={glow2} style={styles.container} >
+          <Header>
+            <Button transparent>
+              <Text />
+            </Button>
 
-                        <Title>Home</Title>
+            <Title>Home</Title>
 
-                        <Button transparent onPress={this.props.openDrawer}>
-                            <Icon name='ios-menu' />
-                        </Button>
-                    </Header>
+            <Button transparent onPress={this.props.openDrawer}>
+              <Icon name="ios-menu" />
+            </Button>
+          </Header>
 
-                    <Content style={{backgroundColor: 'transparent'}} padder>
-                        <Text>
-                            Create Something Awesome . . .
-                        </Text>
+          <Content style={{ backgroundColor: 'transparent' }} padder>
+            <Text>
+              Create Something Awesome . . .
+            </Text>
 
-                        <Button transparent large style={styles.roundedButton} onPress={() => this.replaceRoute('login')}>
-                            <Icon name='ios-close-outline' />
-                        </Button>
-                    </Content>
-                </Image>
-            </Container>
-        )
-    }
+            <Button
+              transparent
+              large
+              style={styles.roundedButton}
+              onPress={() => this.props.reset(this.props.navigation.key)}
+            >
+              <Icon name="ios-close-outline" style={styles.closeIcon} />
+            </Button>
+          </Content>
+        </Image>
+      </Container>
+        );
+  }
 }
 
 function bindAction(dispatch) {
-    return {
-        openDrawer: ()=>dispatch(openDrawer()),
-        popRoute: () => dispatch(popRoute()),
-        replaceRoute:(route)=>dispatch(replaceRoute(route))
-    }
+  return {
+    openDrawer: () => dispatch(openDrawer()),
+    reset: key => dispatch(reset([{ key: 'login' }], key, 0)),
+  };
 }
 
-export default connect(null, bindAction)(Home);
+const mapStateToProps = state => ({
+  navigation: state.cardNavigation,
+});
+
+export default connect(mapStateToProps, bindAction)(Home);

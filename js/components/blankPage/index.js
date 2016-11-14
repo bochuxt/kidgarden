@@ -1,53 +1,67 @@
-'use strict';
 
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
+import { actions } from 'react-native-navigation-redux-helpers';
+import { Container, Header, Title, Content, Button, Icon } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
-import { popRoute } from '../../actions/route';
-
-import { Container, Header, Title, Content, Button, Icon, Text } from 'native-base';
 
 import theme from '../../themes/base-theme';
 import styles from './styles';
 
+const {
+  popRoute,
+} = actions;
+
+const glow2 = require('../../../images/glow2.png');
+
 class BlankPage extends Component {
 
-    popRoute() {
-        this.props.popRoute();
-    }
+  static propTypes = {
+    popRoute: React.PropTypes.func,
+    openDrawer: React.PropTypes.func,
+    navigation: React.PropTypes.shape({
+      key: React.PropTypes.string,
+    }),
+  }
 
-    render() {
-        return (
-            <Container theme={theme} style={{backgroundColor:'#384850'}}>
-                <Image source={require('../../../images/glow2.png')} style={styles.container} >
-                    <Header>
-                        <Button transparent onPress={() => this.popRoute()}>
-                            <Icon name='ios-arrow-back' />
-                        </Button>
+  popRoute() {
+    this.props.popRoute(this.props.navigation.key);
+  }
 
-                        <Title>Blank Page</Title>
+  render() {
+    return (
+      <Container theme={theme} style={{ backgroundColor: '#384850' }}>
+        <Image source={glow2} style={styles.container} >
+          <Header>
+            <Button transparent onPress={() => this.popRoute()}>
+              <Icon name="ios-arrow-back" />
+            </Button>
 
-                        <Button transparent onPress={this.props.openDrawer}>
-                            <Icon name='ios-menu' />
-                        </Button>
-                    </Header>
+            <Title>Blank Page</Title>
 
-                    <Content padder style={{backgroundColor: 'transparent'}}>
-                        
-                    </Content>
-                </Image>
-            </Container>
-        )
-    }
+            <Button transparent onPress={this.props.openDrawer}>
+              <Icon name="ios-menu" />
+            </Button>
+          </Header>
+
+          <Content padder style={{ backgroundColor: 'transparent' }} />
+        </Image>
+      </Container>
+    );
+  }
 }
 
 function bindAction(dispatch) {
-    return {
-        openDrawer: ()=>dispatch(openDrawer()),
-        popRoute: () => dispatch(popRoute())
-    }
+  return {
+    openDrawer: () => dispatch(openDrawer()),
+    popRoute: key => dispatch(popRoute(key)),
+  };
 }
 
-export default connect(null, bindAction)(BlankPage);
+const mapStateToProps = state => ({
+  navigation: state.cardNavigation,
+});
+
+export default connect(mapStateToProps, bindAction)(BlankPage);
