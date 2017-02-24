@@ -5,7 +5,7 @@ const { StyleSheet, Dimensions, Platform } = React;
 
 const deviceHeight = Dimensions.get('window').height;
 
-module.exports = StyleSheet.create({
+export default {
   container: {
     flex: 1,
     width: null,
@@ -26,4 +26,4 @@ module.exports = StyleSheet.create({
     paddingRight: 20,
     paddingBottom: (Platform.OS === 'ios') ? 70 : 50,
   },
-});
+};

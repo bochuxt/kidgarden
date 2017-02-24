@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Button, Icon, Text } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, Text, Left, Right, Body } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
 
-import theme from '../../themes/base-theme';
 import styles from './styles';
 
 const {
@@ -28,18 +27,18 @@ class Home extends Component {  // eslint-disable-line
 
   render() {
     return (
-      <Container theme={theme} style={{ backgroundColor: '#384850' }}>
+      <Container style={{ backgroundColor: '#384850' }}>
         <Image source={glow2} style={styles.container} >
-          <Header>
-            <Button transparent>
-              <Text />
-            </Button>
-
-            <Title>Home</Title>
-
-            <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
-            </Button>
+          <Header >
+            <Left />
+            <Body>
+              <Title>Home</Title>
+            </Body>
+            <Right>
+              <Button transparent onPress={this.props.openDrawer} >
+                <Icon active name="menu" style={{ fontSize: 30, lineHeight: 32 }} />
+              </Button>
+            </Right>
           </Header>
 
           <Content style={{ backgroundColor: 'transparent' }} padder>
@@ -53,12 +52,12 @@ class Home extends Component {  // eslint-disable-line
               style={styles.roundedButton}
               onPress={() => this.props.reset(this.props.navigation.key)}
             >
-              <Icon name="ios-close-outline" style={styles.closeIcon} />
+              <Icon name="close" style={styles.closeIcon} />
             </Button>
           </Content>
         </Image>
       </Container>
-        );
+    );
   }
 }
 

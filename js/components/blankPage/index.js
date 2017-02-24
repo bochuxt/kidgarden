@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Header, Title, Content, Button, Icon } from 'native-base';
+import { Container, Header, Title, Content, Button, Icon, Left, Right, Body } from 'native-base';
 
 import { openDrawer } from '../../actions/drawer';
 
-import theme from '../../themes/base-theme';
 import styles from './styles';
 
 const {
@@ -32,18 +31,23 @@ class BlankPage extends Component {
 
   render() {
     return (
-      <Container theme={theme} style={{ backgroundColor: '#384850' }}>
+      <Container style={{ backgroundColor: '#384850' }}>
         <Image source={glow2} style={styles.container} >
           <Header>
-            <Button transparent onPress={() => this.popRoute()}>
-              <Icon name="ios-arrow-back" />
-            </Button>
+            <Left>
+              <Button transparent onPress={() => this.popRoute()}>
+                <Icon name="ios-arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Blank Page</Title>
+            </Body>
 
-            <Title>Blank Page</Title>
-
-            <Button transparent onPress={this.props.openDrawer}>
-              <Icon name="ios-menu" />
-            </Button>
+            <Right>
+              <Button transparent onPress={this.props.openDrawer}>
+                <Icon name="ios-menu" />
+              </Button>
+            </Right>
           </Header>
 
           <Content padder style={{ backgroundColor: 'transparent' }} />

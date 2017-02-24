@@ -12,7 +12,6 @@ import Home from './components/home/';
 import BlankPage from './components/blankPage';
 import SplashPage from './components/splashscreen/';
 import SideBar from './components/sideBar';
-import { statusBarColor } from './themes/base-theme';
 
 const {
   popRoute,
@@ -52,7 +51,7 @@ class AppNavigator extends Component {
     }
 
     if (this.props.drawerState === 'closed') {
-      this._drawer.close();
+      this._drawer._root.close();
     }
   }
 
@@ -61,7 +60,7 @@ class AppNavigator extends Component {
   }
 
   openDrawer() {
-    this._drawer.open();
+    this._drawer._root.open();
   }
 
   closeDrawer() {
@@ -115,7 +114,7 @@ class AppNavigator extends Component {
         negotiatePan
       >
         <StatusBar
-          backgroundColor={statusBarColor}
+          backgroundColor="#00c497"
           barStyle="light-content"
         />
         <NavigationCardStack

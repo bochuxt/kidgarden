@@ -9,7 +9,6 @@ import Modal from 'react-native-modalbox';
 import AppNavigator from './AppNavigator';
 import ProgressBar from './components/loaders/ProgressBar';
 
-import theme from './themes/base-theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +64,7 @@ class App extends Component {
   render() {
     if (this.state.showDownloadingModal) {
       return (
-        <Container theme={theme} style={{ backgroundColor: theme.defaultBackgroundColor }}>
+        <Container>
           <Content style={styles.container}>
             <Modal
               style={[styles.modal, styles.modal1]}
