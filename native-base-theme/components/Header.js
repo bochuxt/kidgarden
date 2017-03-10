@@ -175,7 +175,7 @@ export default (variables = variable) => {
     },
     'NativeBase.Body': {
       flex: 1,
-      alignItems: ((platform === 'ios') && (platformStyle!=='material')) ? 'center' : 'flex-start',
+      alignItems: ((platform === 'ios') && (platformStyle!=='material')) ? 'center' : 'center',
       alignSelf: 'center',
       'NativeBase.Button': {
         alignSelf: 'center',

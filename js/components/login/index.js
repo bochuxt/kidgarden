@@ -9,7 +9,7 @@ import styles from './styles';
 
 const {
   pushRoute,
-  replaceAt,
+  replaceAtIndex,
 } = actions;
 
 const backgroundImage = require('../../../images/glow2.png');
@@ -18,7 +18,7 @@ const logo = require('../../../images/logo.png');
 class Login extends Component {
 
   static propTypes = {
-    replaceAt: React.PropTypes.func,
+    replaceAtIndex: React.PropTypes.func,
     pushRoute: React.PropTypes.func,
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
@@ -33,8 +33,8 @@ class Login extends Component {
     };
   }
 
-  replaceAt(route) {
-    this.props.replaceAt('login', { key: route }, this.props.navigation.key);
+  replaceAtIndex(route) {
+    this.props.replaceAtIndex( this.props.navigation.index, { key: route }, this.props.navigation.key);
   }
 
   pushRoute(route) {
@@ -52,7 +52,8 @@ class Login extends Component {
                     <Item underline style={{ marginBottom: 20 }}>
                       <Icon active name="person" />
                       <Input
-                        placeholder="EMAIL"
+                        autoCorrect={false}
+                        placeholder="Email"
                         placeholderTextColor="#FFF"
                         onChangeText={email => this.setState({ email })}
                       />
@@ -60,7 +61,7 @@ class Login extends Component {
                     <Item underline style={{ marginBottom: 30 }}>
                       <Icon name="unlock" />
                       <Input
-                        placeholder="PASSWORD"
+                        placeholder="Password"
                         placeholderTextColor="#FFF"
                         secureTextEntry
                         onChangeText={password => this.setState({ password })}
@@ -71,12 +72,12 @@ class Login extends Component {
                     Forgot Password
                   </Text>
                 </Button>
-                <Button rounded block style={{ marginBottom: 20 }} onPress={() => this.replaceAt('home')}>
+                <Button rounded block style={{ marginBottom: 10 }} onPress={() => this.replaceAtIndex('home')}>
                   <Text style={{ color:'#00C497' }}>
                     Login
                   </Text>
                 </Button>
-                <Button transparent style={{ alignSelf: 'center' }}>
+                <Button transparent style={{ alignSelf: 'center' }} onPress={() => this.pushRoute('signUp')}>
                   <Text>
                     Sign Up Here
                   </Text>
@@ -93,7 +94,7 @@ class Login extends Component {
 
 function bindActions(dispatch) {
   return {
-    replaceAt: (routeKey, route, key) => dispatch(replaceAt(routeKey, route, key)),
+    replaceAtIndex: (routeKey, route, key) => dispatch(replaceAtIndex(routeKey, route, key)),
     pushRoute: (route, key) => dispatch(pushRoute(route, key)),
   };
 }

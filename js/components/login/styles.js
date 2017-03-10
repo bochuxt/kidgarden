@@ -5,7 +5,7 @@ const { StyleSheet, Dimensions, Platform } = React;
 
 const deviceHeight = Dimensions.get('window').height;
 
-export default {
+export default{
   container: {
     flex: 1,
     width: null,
@@ -13,6 +13,7 @@ export default {
   },
   shadow: {
     flex: 1,
+    marginTop: (deviceHeight < 600) ? -40 : -10,
     width: null,
     height: null,
     backgroundColor: 'transparent',
@@ -24,6 +25,6 @@ export default {
     paddingTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingBottom: (Platform.OS === 'ios') ? 70 : 50,
+    paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
   },
 };
