@@ -77,7 +77,7 @@ class Login extends Component {
                     Login
                   </Text>
                 </Button>
-                <Button transparent style={{ alignSelf: 'center' }} onPress={() => this.pushRoute('signUp')}>
+                <Button transparent style={{ alignSelf: 'center' }}>
                   <Text>
                     Sign Up Here
                   </Text>
