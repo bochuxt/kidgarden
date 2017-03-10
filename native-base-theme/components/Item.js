@@ -80,7 +80,7 @@ export default (variables = variable) => {
       },
       'NativeBase.Input': {
         height: variables.inputHeightBase,
-        color: variables.inputColor,
+        color: '#fff',
         flex: 1,
         top: (Platform.OS === 'ios') ? 1.5 : undefined,
         fontSize: variables.inputFontSize,
