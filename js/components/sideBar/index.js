@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, Icon, List, ListItem, Content, Thumbnail } from 'native-base';
+import { Text, Icon, ListItem, Content, Thumbnail, Left, Right, Body } from 'native-base';
 
 import navigateTo from '../../actions/sideBarNav';
 import styles from './style';
@@ -22,21 +22,28 @@ class SideBar extends Component {
     return (
       <Content style={{ backgroundColor: '#252A30' }} >
         <Thumbnail
-          size={200}
-          style={{ alignSelf: 'center', marginTop: 20, marginBottom: 15, resizeMode: 'contain' }}
+          style={{ alignSelf: 'center', marginTop: 20, marginBottom: 15, resizeMode: 'contain', height: 200, width: 200 }}
           circular
           source={logo}
         />
-        <List foregroundColor={'white'} >
-          <ListItem button onPress={() => this.navigateTo('home')} iconLeft style={styles.links} >
-            <Icon name="ios-home" />
+        <ListItem button onPress={() => this.navigateTo('home')} icon style={styles.links} >
+          <Left>
+            <Icon active name="home" />
+          </Left>
+          <Body>
             <Text >Home</Text>
-          </ListItem>
-          <ListItem button onPress={() => this.navigateTo('blankPage')} iconLeft style={styles.links}>
-            <Icon name="ios-chatboxes" />
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem button onPress={() => this.navigateTo('blankPage')} icon style={styles.links}>
+          <Left>
+            <Icon active name="chatboxes" />
+          </Left>
+          <Body>
             <Text>Blank Page</Text>
-          </ListItem>
-        </List>
+          </Body>
+          <Right />
+        </ListItem>
       </Content>
     );
   }

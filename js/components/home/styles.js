@@ -1,9 +1,9 @@
 
 const React = require('react-native');
 
-const { StyleSheet,Platform } = React;
+const { StyleSheet, Platform } = React;
 
-module.exports = StyleSheet.create({
+export default {
   container: {
     flex: 1,
     width: null,
@@ -16,6 +16,8 @@ module.exports = StyleSheet.create({
     borderRadius: 90,
     width: 65,
     height: 65,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   name: {
     color: 'red',
@@ -25,6 +27,7 @@ module.exports = StyleSheet.create({
     fontSize: 18,
   },
   closeIcon: {
-    marginTop: (Platform.OS === 'ios') ? 2 : -7
-  }
-});
+    fontSize: (Platform.OS === 'ios') ? 50 : 40,
+    alignSelf: 'center',
+  },
+};

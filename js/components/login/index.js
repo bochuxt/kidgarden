@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { Image, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { actions } from 'react-native-navigation-redux-helpers';
-import { Container, Content, Text, InputGroup, Input, Button, Icon, View } from 'native-base';
+import { Container, Content, Text, Item, Input, Button, Icon, View, Form } from 'native-base';
 
-import login from './login-theme';
 import styles from './styles';
 
 const {
-  replaceAt,
+  pushRoute,
+  replaceAtIndex,
 } = actions;
 
 const backgroundImage = require('../../../images/glow2.png');
@@ -18,12 +18,12 @@ const logo = require('../../../images/logo.png');
 class Login extends Component {
 
   static propTypes = {
-    replaceAt: React.PropTypes.func,
+    replaceAtIndex: React.PropTypes.func,
+    pushRoute: React.PropTypes.func,
     navigation: React.PropTypes.shape({
       key: React.PropTypes.string,
     }),
   }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,45 +33,49 @@ class Login extends Component {
     };
   }
 
-  replaceAt(route) {
-    this.props.replaceAt('login', { key: route }, this.props.navigation.key);
+  replaceAtIndex(route) {
+    this.props.replaceAtIndex( this.props.navigation.index, { key: route }, this.props.navigation.key);
+  }
+
+  pushRoute(route) {
+    this.props.pushRoute({ key: route, index: 1 }, this.props.navigation.key);
   }
 
   render() {
     return (
       <Container>
-        <Content style={{ backgroundColor: '#384850' }} theme={login} scrollEnabled={this.state.scroll}>
+
+        <Content style={{ backgroundColor: '#384850' }} scrollEnabled={this.state.scroll}>
           <Image source={backgroundImage} style={styles.container}>
             <Image source={logo} style={styles.shadow}>
               <View style={styles.bg}>
-                <View style={{ marginBottom: 20 }}>
-                  <InputGroup >
-                    <Icon name="ios-person" />
-                    <Input
-                      placeholder="EMAIL"
-                      onChangeText={email => this.setState({ email })}
-                    />
-                  </InputGroup>
-                </View>
-
-                <View style={{ marginBottom: 30 }}>
-                  <InputGroup >
-                    <Icon name="ios-unlock-outline" />
-                    <Input
-                      placeholder="PASSWORD"
-                      secureTextEntry
-                      onChangeText={password => this.setState({ password })}
-                    />
-                  </InputGroup>
-                </View>
-
+                    <Item underline style={{ marginBottom: 20 }}>
+                      <Icon active name="person" />
+                      <Input
+                        autoCorrect={false}
+                        placeholder="Email"
+                        placeholderTextColor="#FFF"
+                        onChangeText={email => this.setState({ email })}
+                      />
+                    </Item>
+                    <Item underline style={{ marginBottom: 30 }}>
+                      <Icon name="unlock" />
+                      <Input
+                        placeholder="Password"
+                        placeholderTextColor="#FFF"
+                        secureTextEntry
+                        onChangeText={password => this.setState({ password })}
+                      />
+                    </Item>
                 <Button transparent style={{ alignSelf: 'flex-end', marginBottom: (Platform.OS === 'ios') ? 5 : 0, marginTop: (Platform.OS === 'ios') ? -10 : 0 }}>
                   <Text>
                     Forgot Password
                   </Text>
                 </Button>
-                <Button rounded block style={{ marginBottom: 20 }} onPress={() => this.replaceAt('home')}>
-                  Login
+                <Button rounded block style={{ marginBottom: 10 }} onPress={() => this.replaceAtIndex('home')}>
+                  <Text style={{ color:'#00C497' }}>
+                    Login
+                  </Text>
                 </Button>
                 <Button transparent style={{ alignSelf: 'center' }}>
                   <Text>
@@ -90,7 +94,8 @@ class Login extends Component {
 
 function bindActions(dispatch) {
   return {
-    replaceAt: (routeKey, route, key) => dispatch(replaceAt(routeKey, route, key)),
+    replaceAtIndex: (routeKey, route, key) => dispatch(replaceAtIndex(routeKey, route, key)),
+    pushRoute: (route, key) => dispatch(pushRoute(route, key)),
   };
 }
 
