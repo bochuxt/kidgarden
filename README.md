@@ -1,8 +1,4 @@
-## Native Starter Pro - Seed v6.0.0
 
-Thanks for purchasing the Native Starter Pro.
-
-We provide you Native Starter Pro along with its Seed Version.
 
 A project that you can install on the fly to get the basic plumping of Native Starter Pro using React Native and NativeBase.
 
